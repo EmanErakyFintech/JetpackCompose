@@ -37,7 +37,7 @@ class HistoryEmployeeViewModel(private val repository: EmployeeRepositoryImpl) :
 
 
     fun onEvent(event: UIEvent) {
-        when (event) {
+        /*when (event) {
             is UIEvent.Send -> {
                 viewModelScope.launch {
                     intent.send(EmployeeIntent.CallEmployees(
@@ -47,20 +47,16 @@ class HistoryEmployeeViewModel(private val repository: EmployeeRepositoryImpl) :
                     )
                 }
             }
-        }
+        }*/
     }
 
     private fun callEmployees(token: String, map: MutableMap<String, String>) {
-        viewModelScope.launch {
-            withContext(Dispatchers.IO) {
 
+        viewModelScope.launch(Dispatchers.IO) {
                 repository.vendorEmployees(token, map = map).collect {
                     _data?.emit(it)
                 }
             }
 
         }
-    }
-
-
 }

@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -27,6 +28,11 @@ fun HomeFragment(
 
         observeEmployees(vm,onClickToCreateScreen=onClickToCreateScreen,onClickToDetailScreen = onClickToDetailScreen)
     }
+
+    LaunchedEffect(Unit) {
+        vm.intent.send(EmployeeIntent.CallEmployees("1346|di0P54pPK3X9dZQCSXWytLRrEFKIr7vlyo4OK9Z1", mutableMapOf()))
+    }
+
 }
 
 
